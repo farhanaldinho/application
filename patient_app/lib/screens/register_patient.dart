@@ -19,9 +19,12 @@ class _RegisterPatient extends State {
         appBar: AppBar(
           backgroundColor: AppColors.appBar,
           leadingWidth: double.infinity,
-          leading: Text(
-              style: TextStyle(fontSize: 24, color: AppColors.white),
-              AppStrings.appBarText),
+          leading: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+                style: TextStyle(fontSize: 24, color: AppColors.white),
+                AppStrings.appBarText),
+          ),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 24),
