@@ -13,15 +13,15 @@ Please answer the following quesitons shortly inside this file.
 
 ### Why is health data such as this especially protected by the data protection and privacy regulations?
 
-- insert your answer here. provocate merge conflict.
+- insert your answer here. provoked merge conflict.
 
 ### How do you provide animation logic in Unity-based game?
 
-- insert your answer here. provocate merge conflict.
+- insert your answer here. provoked merge conflict.
 
 ### Please explain how file permissions work in Linux. What different kinds of permissions are there? How are they assigned to a file or directory?
 
-- insert your answer here. provocate merge conflict.
+- insert your answer here. provoked merge conflict.
 
 ## Part 2: Git skills
 
