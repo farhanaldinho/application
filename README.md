@@ -33,17 +33,3 @@ Before continuing please commit your answers so far, thanks.
 If you check the branches of this repository you will recognize another branch.
 Please merge the branch and its containing files into your main branch.
 Resolve possible merge conflicts.
-
-## Part 3: Simple demo app
-
-### Implementation task
-
-Create an android app which allows the user to register a patient with firstname, lastname, date of birth, weight, shoesize.
-Additionally the app should instruct the user to take four pictures of the patients feet, the top and bottom per foot.
-The backend can be mocked and does not have to be implemented by you. However, it should ideally be a REST API endpoint.
-
-### What privacy issues are related to this feature?
-
-- insert your answer here
-
-After completing the tasks please send us an invite to your forked repository (Nikolajewitsch, istiyaksiddiquee ).
