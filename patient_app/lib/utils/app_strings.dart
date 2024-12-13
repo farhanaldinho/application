@@ -16,4 +16,6 @@ class AppStrings {
   static String submitButtonText = 'Submit';
   static String selectImageText = 'Select Image';
   static String imageError = 'Please add all images';
+  static String submissionError = 'Failed to register patient';
+  static String submissionSuccess = 'Patient registered successfully';
 }

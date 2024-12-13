@@ -62,13 +62,18 @@ class _RegisterPatient extends State {
     });
   }
 
-  void _submitForm() {
+  void onSubmitForm() {
     if (validateForm() &&
         validateDate() &&
         validateWeight() &&
         validateShoeSize()) {
       Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-        return const AddImageScreen();
+        return AddImageScreen(
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            weight: weight,
+            shoeSize: weight);
       }));
     }
   }
@@ -219,7 +224,7 @@ class _RegisterPatient extends State {
               textStyle:
                   const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            onPressed: _submitForm,
+            onPressed: onSubmitForm,
             child: Text(AppStrings.nextButtonText)),
       ],
     );

@@ -2,13 +2,26 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:patient_app/models/patient_model.dart';
 import 'package:patient_app/utils/app_colors.dart';
 import 'package:patient_app/utils/app_strings.dart';
 import 'package:patient_app/widgets/error_snackBar.dart';
 import 'package:patient_app/widgets/vertical_spacing.dart';
 
 class AddImageScreen extends StatefulWidget {
-  const AddImageScreen({super.key});
+  const AddImageScreen(
+      {required this.firstName,
+      required this.lastName,
+      required this.dateOfBirth,
+      required this.weight,
+      required this.shoeSize,
+      super.key});
+
+  final String firstName;
+  final String lastName;
+  final String dateOfBirth;
+  final String weight;
+  final String shoeSize;
 
   @override
   State<StatefulWidget> createState() {
@@ -16,9 +29,10 @@ class AddImageScreen extends StatefulWidget {
   }
 }
 
-class _AddImageScreen extends State {
-  final List<File?> images = [null, null, null, null];
-  final ImagePicker imagePicker = ImagePicker();
+class _AddImageScreen extends State<AddImageScreen> {
+  List<File?> images = [null, null, null, null];
+  ImagePicker imagePicker = ImagePicker();
+  bool loading = false;
 
   Future<void> getImage(int index) async {
     //add perms for android
@@ -36,9 +50,28 @@ class _AddImageScreen extends State {
     });
   }
 
-  void onSubmit() {
+  Future<void> onSubmit() async {
     if (validateImages()) {
-      print('done');
+      final patient = Patient(widget.firstName, widget.lastName,
+          widget.dateOfBirth, widget.weight, widget.shoeSize, images);
+      print(patient.firstName);
+      setState(() {
+        loading = true;
+      });
+      final response = await Future.delayed(const Duration(seconds: 2), () {
+        return true;
+      });
+
+      if (response) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              backgroundColor: AppColors.appBar,
+              content: Text(AppStrings.submissionSuccess)),
+        );
+        Navigator.of(context).pushReplacementNamed('/');
+      } else {
+        renderSnackBar(AppStrings.submissionError, context);
+      }
     }
   }
 
@@ -67,24 +100,26 @@ class _AddImageScreen extends State {
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: Text(
-                AppStrings.captureImagesText,
-                style: const TextStyle(fontSize: 20),
+        child: loading
+            ? renderLoader()
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(
+                      AppStrings.captureImagesText,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const VerticalSpacing(),
+                  //image trigger
+                  renderGridView(),
+                  const VerticalSpacing(),
+                  //submit button
+                  renderSubmitButton()
+                ],
               ),
-            ),
-            const VerticalSpacing(),
-            //image trigger
-            renderGridView(),
-            const VerticalSpacing(),
-            //submit button
-            renderSubmitButton()
-          ],
-        ),
       ),
     );
   }
@@ -164,5 +199,9 @@ class _AddImageScreen extends State {
         ),
         onPressed: onSubmit,
         child: Text(AppStrings.submitButtonText));
+  }
+
+  Widget renderLoader() {
+    return const Center(child: CircularProgressIndicator());
   }
 }
