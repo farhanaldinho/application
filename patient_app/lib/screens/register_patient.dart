@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_app/screens/add_image_screen.dart';
 import 'package:patient_app/utils/app_colors.dart';
 import 'package:patient_app/utils/app_strings.dart';
 import 'package:patient_app/widgets/vertical_spacing.dart';
@@ -25,6 +26,16 @@ class _RegisterPatient extends State {
   String dateOfBirth = '';
   String weight = '';
   String shoeSize = '';
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _dobController.dispose();
+    _weightController.dispose();
+    _shoeSizeController.dispose();
+    super.dispose();
+  }
 
   void setFirstName(String value) {
     setState(() {
@@ -55,7 +66,9 @@ class _RegisterPatient extends State {
         validateDate() &&
         validateWeight() &&
         validateShoeSize()) {
-      //submit
+      Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+        return const AddImageScreen();
+      }));
     }
   }
 
