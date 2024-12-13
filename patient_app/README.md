@@ -1,5 +1,4 @@
 
-https://github.com/user-attachments/assets/7a04df66-08e9-484e-9be6-430b4267775d
 # Patient app
 
 - This app is made using Flutter to develop both native builds for android and ios using the same codebase (dart).
@@ -17,6 +16,7 @@ https://github.com/user-attachments/assets/7a04df66-08e9-484e-9be6-430b4267775d
 # Android
 
 - Uploading recording_android.mp4…
+https://github.com/user-attachments/assets/7a04df66-08e9-484e-9be6-430b4267775d
 
 
 
