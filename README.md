@@ -45,6 +45,6 @@ The backend can be mocked and does not have to be implemented by you. However, i
 
 ### What privacy issues are related to this feature?
 
-- insert your answer here
+- The privacy issues are that we are taking patient data and images with consent by using permissions but however not briefing the patient about the usage of this data. That can be done so by adding in a privacy policy.
 
 After completing the tasks please send us an invite to your forked repository (Nikolajewitsch, istiyaksiddiquee ).
