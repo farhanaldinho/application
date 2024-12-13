@@ -21,6 +21,7 @@ class _AddImageScreen extends State {
   final ImagePicker imagePicker = ImagePicker();
 
   Future<void> getImage(int index) async {
+    //add perms for android
     final imageFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (imageFile != null) {
       setState(() {
@@ -28,6 +29,14 @@ class _AddImageScreen extends State {
       });
     }
   }
+
+  removeImage(int index) {
+    setState(() {
+      images[index] = null;
+    });
+  }
+
+  void onSubmit() {}
 
   @override
   Widget build(BuildContext context) {
@@ -56,22 +65,7 @@ class _AddImageScreen extends State {
             ),
             const VerticalSpacing(),
             //image trigger
-            SizedBox(
-              height: 300,
-              child: GridView.builder(
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: images.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return images[index] == null
-                      ? renderSelectImage(index)
-                      : renderImage();
-                },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-              ),
-            ),
+            renderGridView(),
             const VerticalSpacing(),
             //submit button
             renderSubmitButton()
@@ -81,12 +75,33 @@ class _AddImageScreen extends State {
     );
   }
 
+  SizedBox renderGridView() {
+    return SizedBox(
+      height: 300,
+      child: GridView.builder(
+        shrinkWrap: true,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemCount: images.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return images[index] == null
+              ? renderSelectImage(index)
+              : renderImage(index);
+        },
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      ),
+    );
+  }
+
   Widget renderSelectImage(int index) {
     return Container(
       decoration: BoxDecoration(border: Border.all(width: 1)),
-      margin: EdgeInsets.only(left: 8, bottom: 8),
+      margin: const EdgeInsets.only(left: 8, bottom: 8),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          getImage(index);
+        },
         style: OutlinedButton.styleFrom(
           shape: const LinearBorder(),
           backgroundColor: AppColors.white,
@@ -98,8 +113,31 @@ class _AddImageScreen extends State {
     );
   }
 
-  Widget renderImage() {
-    return Text('data');
+  Widget renderImage(int index) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all(width: 1)),
+      margin: const EdgeInsets.only(left: 8, bottom: 8),
+      child: Stack(
+        children: [
+          Image.file(
+            images[index] as File,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          Positioned(
+              child: IconButton(
+                  onPressed: () {
+                    removeImage(index);
+                  },
+                  icon: Icon(
+                    Icons.close, // or Icons.cancel
+                    size: 24, // Set the size of the icon
+                    color: AppColors.black, // Set the color of the icon
+                  ))),
+        ],
+      ),
+    );
   }
 
   ElevatedButton renderSubmitButton() {
@@ -110,9 +148,7 @@ class _AddImageScreen extends State {
           foregroundColor: AppColors.white,
           textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-        onPressed: () async {
-          await getImage(0);
-        },
+        onPressed: onSubmit,
         child: Text(AppStrings.submitButtonText));
   }
 }
