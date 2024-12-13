@@ -15,9 +15,7 @@
 
 # Android
 
-- Uploading recording_android.mp4…
-https://github.com/user-attachments/assets/7a04df66-08e9-484e-9be6-430b4267775d
-
+- ![recording_android](https://github.com/user-attachments/assets/dcf2fa54-bde8-4cc3-be5d-032e8c52db12)
 
 
 # IOS
