@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class VerticalSpacing extends StatelessWidget {
-  const VerticalSpacing({super.key});
-
+  const VerticalSpacing({this.height = 24, super.key});
+  final double height;
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 24,
+    return SizedBox(
+      height: height,
     );
   }
 }

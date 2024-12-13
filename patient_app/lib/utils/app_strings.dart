@@ -5,5 +5,11 @@ class AppStrings {
   static String lastName = 'Last Name';
   static String dateOfBirth = 'Date Of Birth';
   static String weight = 'Weight (kg)';
-  static String shoeSize = 'Shoe Size';
+  static String shoeSize = 'Shoe Size (cm)';
+  static String selectDate = 'mm/dd/yyyy';
+  static String generalError = 'Please fill all fields';
+  static String weightError = 'Weight should be greater than 30';
+  static String shoeSizeError = 'Shoe size should be greater than 0';
+  static String ageError = 'Age should be greater than 18';
+  static String submitButtonText = 'Next';
 }

@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 fixedSize: const Size(200, 70),
-                backgroundColor: AppColors.registerButton),
+                backgroundColor: AppColors.primaryButton),
             onPressed: onRegisterButtonPress,
             child: Text(AppStrings.registerPatientButtonText)),
       ),
