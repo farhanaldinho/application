@@ -15,4 +15,5 @@ class AppStrings {
   static String captureImagesText = 'Capture the top and bottom of each foot';
   static String submitButtonText = 'Submit';
   static String selectImageText = 'Select Image';
+  static String imageError = 'Please add all images';
 }

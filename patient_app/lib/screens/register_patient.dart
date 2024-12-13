@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_app/screens/add_image_screen.dart';
 import 'package:patient_app/utils/app_colors.dart';
 import 'package:patient_app/utils/app_strings.dart';
+import 'package:patient_app/widgets/error_snackBar.dart';
 import 'package:patient_app/widgets/vertical_spacing.dart';
 
 class RegisterPatient extends StatefulWidget {
@@ -82,7 +83,7 @@ class _RegisterPatient extends State {
     ];
     for (TextEditingController controller in controllerList) {
       if (controller.text.isEmpty) {
-        renderSnackBar(AppStrings.generalError);
+        renderSnackBar(AppStrings.generalError, context);
         return false;
       }
     }
@@ -97,7 +98,7 @@ class _RegisterPatient extends State {
     int age = currentDate.year - dob.year;
 
     if (age < 18) {
-      renderSnackBar(AppStrings.ageError);
+      renderSnackBar(AppStrings.ageError, context);
       return false;
     }
     return true;
@@ -105,7 +106,7 @@ class _RegisterPatient extends State {
 
   bool validateShoeSize() {
     if (double.parse(_shoeSizeController.text.toString()) <= 0) {
-      renderSnackBar(AppStrings.shoeSizeError);
+      renderSnackBar(AppStrings.shoeSizeError, context);
       return false;
     }
     return true;
@@ -113,16 +114,10 @@ class _RegisterPatient extends State {
 
   bool validateWeight() {
     if (double.parse(_weightController.text.toString()) <= 30) {
-      renderSnackBar(AppStrings.weightError);
+      renderSnackBar(AppStrings.weightError, context);
       return false;
     }
     return true;
-  }
-
-  void renderSnackBar(String value) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(value)),
-    );
   }
 
   @override

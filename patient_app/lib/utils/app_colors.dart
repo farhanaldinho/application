@@ -7,4 +7,5 @@ class AppColors {
   static Color white = Colors.white;
   static Color appBar = Colors.blueAccent;
   static Color black = Colors.black;
+  static Color errorRed = Colors.red;
 }

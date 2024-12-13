@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_app/utils/app_colors.dart';
 import 'package:patient_app/utils/app_strings.dart';
+import 'package:patient_app/widgets/error_snackBar.dart';
 import 'package:patient_app/widgets/vertical_spacing.dart';
 
 class AddImageScreen extends StatefulWidget {
@@ -36,7 +36,21 @@ class _AddImageScreen extends State {
     });
   }
 
-  void onSubmit() {}
+  void onSubmit() {
+    if (validateImages()) {
+      print('done');
+    }
+  }
+
+  bool validateImages() {
+    for (File? image in images) {
+      if (image == null) {
+        renderSnackBar(AppStrings.imageError, context);
+        return false;
+      }
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
