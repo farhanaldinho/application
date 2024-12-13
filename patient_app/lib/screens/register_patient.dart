@@ -225,7 +225,7 @@ class _RegisterPatient extends State {
                   const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             onPressed: _submitForm,
-            child: Text(AppStrings.submitButtonText)),
+            child: Text(AppStrings.nextButtonText)),
       ],
     );
   }

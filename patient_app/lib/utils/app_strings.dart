@@ -11,5 +11,8 @@ class AppStrings {
   static String weightError = 'Weight should be greater than 30';
   static String shoeSizeError = 'Shoe size should be greater than 0';
   static String ageError = 'Age should be greater than 18';
-  static String submitButtonText = 'Next';
+  static String nextButtonText = 'Next';
+  static String captureImagesText = 'Capture the top and bottom of each foot';
+  static String submitButtonText = 'Submit';
+  static String selectImageText = 'Select Image';
 }

@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+<string>We need access to your camera to take photos of the patient's feet.</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>We need access to your photo library to store patient photos.</string>
 </dict>
 </plist>
