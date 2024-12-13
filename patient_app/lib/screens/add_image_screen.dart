@@ -7,6 +7,7 @@ import 'package:patient_app/utils/app_colors.dart';
 import 'package:patient_app/utils/app_strings.dart';
 import 'package:patient_app/widgets/error_snackBar.dart';
 import 'package:patient_app/widgets/vertical_spacing.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class AddImageScreen extends StatefulWidget {
   const AddImageScreen(
@@ -36,12 +37,33 @@ class _AddImageScreen extends State<AddImageScreen> {
 
   Future<void> getImage(int index) async {
     //add perms for android
-    final imageFile = await imagePicker.pickImage(source: ImageSource.camera);
-    if (imageFile != null) {
-      setState(() {
-        images[index] = File(imageFile.path);
+    if (await reqPermission()) {
+      final imageFile = await imagePicker.pickImage(source: ImageSource.camera);
+      if (imageFile != null) {
+        setState(() {
+          images[index] = File(imageFile.path);
+        });
+      }
+    } else {
+      renderSnackBar(AppStrings.permissionsError, context);
+      Future.delayed(const Duration(seconds: 2), () {
+        openAppSettings();
       });
     }
+  }
+
+  Future<bool> reqPermission() async {
+    if (Platform.isAndroid) {
+      final status = await Permission.camera.request();
+      if (status.isDenied) {
+        await Permission.camera.request();
+      } else if (status.isPermanentlyDenied) {
+        return false;
+      } else if (status.isGranted) {
+        return true;
+      }
+    }
+    return true;
   }
 
   removeImage(int index) {

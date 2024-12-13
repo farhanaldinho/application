@@ -18,4 +18,6 @@ class AppStrings {
   static String imageError = 'Please add all images';
   static String submissionError = 'Failed to register patient';
   static String submissionSuccess = 'Patient registered successfully';
+  static String permissionsError =
+      'Please go to settings and grant camera permission';
 }
