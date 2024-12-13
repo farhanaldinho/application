@@ -23,6 +23,7 @@ https://github.com/user-attachments/assets/7a04df66-08e9-484e-9be6-430b4267775d
 # IOS
 
 - On ios emulator you cannot use camera hence in the end there is an error.
+
   ![recording_ios-min](https://github.com/user-attachments/assets/84df5d5c-d27b-439e-8db3-dbabed97c257)
 
 
